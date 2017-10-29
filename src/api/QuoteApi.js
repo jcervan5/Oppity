@@ -3,7 +3,7 @@ import delay from './delay';
 // This file mocks a web API by working with the hard-coded data below.
 // It uses setTimeout to simulate the delay of an AJAX call.
 // All calls return promises.
-const courses = [
+const quotes = [
     {
         id: "wedding",
         title: "Murry Wedding",
@@ -41,65 +41,65 @@ function replaceAll(str, find, replace) {
 }
 
 //This would be performed on the server in a real app. Just stubbing in.
-const generateId = (course) => {
-    return replaceAll(course.title, ' ', '-');
+const generateId = (quote) => {
+    return replaceAll(quote.title, ' ', '-');
 };
 
-class CourseApi {
-    static getAllCourses() {
+class QuoteApi {
+    static getAllQuotes() {
         return new Promise((resolve) => {
             setTimeout(() => {
-                resolve(Object.assign([], courses));
+                resolve(Object.assign([], quotes));
             }, delay);
         });
     }
 
-    static saveCourse(course) {
-        course = Object.assign({}, course); // to avoid manipulating object passed in.
+    static saveQuote(quote) {
+        quote = Object.assign({}, quote); // to avoid manipulating object passed in.
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 // Simulate server-side validation
-                const minCourseTitleLength = 1;
-                if (course.title.length < minCourseTitleLength) {
-                    reject(`Title must be at least ${minCourseTitleLength} characters.`);
+                const minQuoteTitleLength = 1;
+                if (quote.title.length < minQuoteTitleLength) {
+                    reject(`Title must be at least ${minQuoteTitleLength} characters.`);
                 }
 
-                if (course.id) {
-                    const existingCourseIndex = courses.findIndex(a => a.id === course.id);
-                    courses.splice(existingCourseIndex, 1, course);
+                if (quote.id) {
+                    const existingQuoteIndex = quotes.findIndex(a => a.id === quote.id);
+                    quotes.splice(existingQuoteIndex, 1, quote);
                 } else {
                     //Just simulating creation here.
                     //The server would generate ids and watchHref's for new courses in a real app.
                     //Cloning so copy returned is passed by value rather than by reference.
-                    course.id = generateId(course);
-                    course.watchHref = `http://www.pluralsight.com/courses/${course.id}`;
-                    courses.push(course);
+                    quote.id = generateId(quote);
+                    quote.watchHref = `http://www.pluralsight.com/courses/${quote.id}`;
+                    quote.push(quote);
                 }
 
-                resolve(course);
+                resolve(quote);
             }, delay);
         });
     }
 
-    static deleteCourse(courseId) {
+    static deleteQuote(quoteId) {
         return new Promise((resolve) => {
             setTimeout(() => {
-                const indexOfCourseToDelete = courses.findIndex(course => course.id === courseId);
-                courses.splice(indexOfCourseToDelete, 1);
+                const indexOfQuoteToDelete = quotes.findIndex(quote => quote.id === quoteId);
+                quotes.splice(indexOfQuoteToDelete, 1);
                 resolve();
             }, delay);
         });
     }
 
 
-    static getCourse(courseId) {
+    static getQuote(quoteId) {
         return new Promise((resolve) => {
             setTimeout(() => {
-                const existingCourseIndex = courses.findIndex(course => course.id === courseId);
+                const existingQuoteIndex = quotes.findIndex(quote => quote.id === quoteId);
 
-                const courseFound = Object.assign({}, courses[existingCourseIndex]);
+                const quoteFound = Object.assign({}, quotes[existingQuoteIndex]);
 
-                resolve(courseFound);
+                resolve(quoteFound);
 
             }, delay);
         });
@@ -107,4 +107,4 @@ class CourseApi {
 
 }
 
-export default CourseApi;
+export default QuoteApi;

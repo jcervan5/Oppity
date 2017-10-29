@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import FieldInput from '../common/FieldInput';
-import SelectInput from '../common/SelectInput';
 
 
-export const CourseForm = ({ handleSubmit, pristine, reset, submitting, heading, authors, handleSave, handleCancel }) => {
+
+export const QuoteForm = ({ handleSubmit, pristine, reset, submitting, heading, handleSave, handleCancel }) => {
     return (
         <form onSubmit={handleSubmit(handleSave)}>
             <h1>{heading}</h1>
@@ -13,30 +13,23 @@ export const CourseForm = ({ handleSubmit, pristine, reset, submitting, heading,
                 type="text"
                 name="title"
                 label="Title"
-                placeholder="Title of the course"
-                component={FieldInput}
-            />
-
-            <Field
-                name="authorId"
-                label="Author"
-                options={authors}
-                component={SelectInput}
-            />
-
-            <Field
-                type="text"
-                name="category"
-                label="Category"
-                placeholder="Category of the course"
+                placeholder="Title"
                 component={FieldInput}
             />
 
             <Field
                 type="text"
-                name="length"
-                label="Length"
-                placeholder="Lenght of course in minutes or hours"
+                name="date"
+                label="Date"
+                placeholder="Date of Event"
+                component={FieldInput}
+            />
+
+            <Field
+                type="text"
+                name="status"
+                label="Status"
+                placeholder="Status of Quote"
                 component={FieldInput}
             />
 
@@ -63,29 +56,25 @@ const validate = values => {
     }
 
     if (!values.category) {
-        errors.category = 'Required';
+        errors.date = 'Required';
     }
 
     if (!values.length) {
-        errors.length = 'Required';
+        errors.status = 'Required';
     }
 
-    if (!values.authorId) {
-        errors.authorId = 'Required';
-    }
 
     return errors;
 };
 
 
 
-CourseForm.propTypes = {
+QuoteForm.propTypes = {
     handleSubmit: PropTypes.func.isRequired,
     pristine: PropTypes.bool.isRequired,
     reset: PropTypes.func.isRequired,
     submitting: PropTypes.bool.isRequired,
     heading: PropTypes.string.isRequired,
-    authors: PropTypes.array.isRequired,
     handleSave: PropTypes.func.isRequired,
     handleCancel: PropTypes.func.isRequired
 };
@@ -93,6 +82,6 @@ CourseForm.propTypes = {
 
 
 export default reduxForm({
-    form: 'CourseForm',
+    form: 'QuoteForm',
     validate
-})(CourseForm);
+})(QuoteForm);

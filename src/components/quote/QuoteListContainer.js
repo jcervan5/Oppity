@@ -2,27 +2,27 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import toastr from 'toastr';
-import * as courseAction from '../../action/CourseAction';
-import CourseList from './CourseList';
+import * as quoteAction from '../../action/QuoteAction';
+import QuoteList from './QuoteList';
 
 
 
-export class CourseListContainer extends React.Component {
+export class QuoteListContainer extends React.Component {
 
     constructor() {
         super();
 
-        this.state = {selectedCourseId: undefined};
+        this.state = {selectedQuoteId: undefined};
 
-        this.handleAddCourse = this.handleAddCourse.bind(this);
-        this.handleEditCourse = this.handleEditCourse.bind(this);
+        this.handleAddQuote = this.handleAddQuote.bind(this);
+        this.handleEditQuote = this.handleEditQuote.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
         this.handleRowSelect = this.handleRowSelect.bind(this);
     }
 
 
     componentDidMount() {
-        this.props.action.getCoursesAction()
+        this.props.action.getQuoteAction()
             .catch(error => {
                 toastr.error(error);
             });
@@ -30,29 +30,29 @@ export class CourseListContainer extends React.Component {
 
 
 
-    handleAddCourse() {
-        this.props.history.push('/course');
+    handleAddQuote() {
+        this.props.history.push('/quote');
     }
 
 
 
-    handleEditCourse() {
-        const selectedCourseId = this.state.selectedCourseId;
+    handleEditQuote() {
+        const selectedQuoteId = this.state.selectedQuoteId;
 
-        if (selectedCourseId) {
-            this.setState({selectedCourseId: undefined});
-            this.props.history.push(`/course/${selectedCourseId}`);
+        if (selectedQuoteId) {
+            this.setState({selectedQuoteId: undefined});
+            this.props.history.push(`/quote/${selectedQuoteId}`);
         }
     }
 
 
 
     handleDelete() {
-        const selectedCourseId = this.state.selectedCourseId;
+        const selectedQuoteId = this.state.selectedQuoteId;
 
-        if (selectedCourseId) {
-            this.setState({selectedCourseId: undefined});
-            this.props.action.deleteCourseAction(selectedCourseId)
+        if (selectedQuoteId) {
+            this.setState({selectedQuoteId: undefined});
+            this.props.action.deleteQuoteAction(selectedQuoteId)
                 .catch(error => {
                     toastr.error(error);
                 });
@@ -63,16 +63,16 @@ export class CourseListContainer extends React.Component {
 
     handleRowSelect(row, isSelected) {
         if (isSelected) {
-            this.setState({selectedCourseId: row.id});
+            this.setState({selectedQuoteId: row.id});
         }
     }
 
 
 
     render() {
-        const { courses } = this.props;
+        const { quotes } = this.props;
 
-        if (!courses) {
+        if (!quotes) {
             return (
                 <div>Loading...</div>
             );
@@ -92,7 +92,7 @@ export class CourseListContainer extends React.Component {
                             <button
                                 type="button"
                                 className="btn btn-primary"
-                                onClick={this.handleAddCourse}
+                                onClick={this.handleAddQuote}
                             >
                                 <i className="fa fa-plus" aria-hidden="true"/> New
                             </button>
@@ -100,7 +100,7 @@ export class CourseListContainer extends React.Component {
                             <button
                                 type="button"
                                 className="btn btn-warning ml-2"
-                                onClick={this.handleEditCourse}
+                                onClick={this.handleEditQuote}
                             >
                                 <i className="fa fa-pencil" aria-hidden="true"/> Edit
                             </button>
@@ -118,7 +118,7 @@ export class CourseListContainer extends React.Component {
 
                 <div className="row">
                     <div className="col">
-                        <CourseList courses={courses} handleRowSelect={this.handleRowSelect}/>
+                        <QuoteList quotes={quotes} handleRowSelect={this.handleRowSelect}/>
                     </div>
                 </div>
             </div>
@@ -129,24 +129,24 @@ export class CourseListContainer extends React.Component {
 
 
 const mapStateToProps = state => ({
-    courses: state.coursesReducer.courses
+    quotes: state.quotesReducer.quotes
 });
 
 
 
 const mapDispatchToProps = dispatch => ({
-    action: bindActionCreators(courseAction, dispatch)
+    action: bindActionCreators(quoteAction, dispatch)
 
 });
 
 
 
-CourseListContainer.propTypes = {
-    courses: PropTypes.array,
+QuoteListContainer.propTypes = {
+    quotes: PropTypes.array,
     action: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired
 };
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(CourseListContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(QuoteListContainer);

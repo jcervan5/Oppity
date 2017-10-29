@@ -2,8 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import PageNotFound from './common/PageNotFound';
 import Home from './landing/Home';
-import CourseListContainer from './course/CourseListContainer'; // eslint-disable-line import/no-named-as-default
-import AddOrEditCourseContainer from './course/AddOrEditCourseContainer'; // eslint-disable-line import/no-named-as-default
+import QuoteListContainer from './quote/QuoteListContainer'; // eslint-disable-line import/no-named-as-default
+import AddOrEditQuoteContainer from './quote/AddOrEditQuoteContainer'; // eslint-disable-line import/no-named-as-default
 import Events from './Events';
 import createBrowserHistory from 'history/createBrowserHistory';
 import HeaderNavContainer from './landing/HeaderNavContainer'; // eslint-disable-line import/no-named-as-default
@@ -23,9 +23,9 @@ const App = () => {
 
                     <Switch>
                         <Route exact path="/" component={Home} />
-                        <Route path="/courses" component={CourseListContainer} />
-                        <Route exact path="/course" component={AddOrEditCourseContainer} />
-                        <Route path="/course/:id" component={AddOrEditCourseContainer} />
+                        <Route path="/quotes" component={QuoteListContainer} />
+                        <Route exact path="/quote" component={AddOrEditQuoteContainer} />
+                        <Route path="/quote/:id" component={AddOrEditQuoteContainer} />
                         <Route path="/events" component={Events} />
                         <Route component={PageNotFound} />
                     </Switch>

@@ -3,12 +3,12 @@ export default {
         authors: []
     },
 
-    coursesReducer: {
-        courses: []
+    quotesReducer: {
+        quotes: []
     },
 
-    selectedCourseReducer: {
-        course: undefined
+    selectedQuoteReducer: {
+        quote: undefined
     },
 
     apiReducer: {

@@ -3,13 +3,13 @@ import initialState from './initialState';
 import _ from 'lodash';
 
 
-const selectedCourseReducer = (state = initialState.selectedCourseReducer, action) => {
+const selectedQuoteReducer = (state = initialState.selectedQuoteReducer, action) => {
     switch(action.type) {
 
-        case ActionType.GET_COURSE_RESPONSE: {
+        case ActionType.GET_QUOTE_RESPONSE: {
             return {
                 ...state,
-                course: _.assign(action.course)
+                quote: _.assign(action.quote)
             };
         }
 
@@ -19,4 +19,4 @@ const selectedCourseReducer = (state = initialState.selectedCourseReducer, actio
 };
 
 
-export default selectedCourseReducer;
+export default selectedQuoteReducer;

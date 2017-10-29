@@ -2,13 +2,13 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import toastr from 'toastr';
-import * as courseAction from '../../action/CourseAction';
+import * as quoteAction from '../../action/QuoteAction';
 import * as authorAction from '../../action/AuthorAction';
-import CourseForm from './CourseForm'; // eslint-disable-line import/no-named-as-default
+import QuoteForm from './QuoteForm'; // eslint-disable-line import/no-named-as-default
 import { authorsFormattedForDropdown } from '../../selectors/selectors'; // eslint-disable-line import/no-named-as-default
 
 
-export class AddOrEditCourseContainer extends React.Component {
+export class AddOrEditQuoteContainer extends React.Component {
 
 
     constructor() {
@@ -20,7 +20,7 @@ export class AddOrEditCourseContainer extends React.Component {
 
 
     componentDidMount() {
-        this.props.action.getCourseAction(this.props.match.params.id)
+        this.props.action.getQuoteAction(this.props.match.params.id)
             .catch(error => {
                 toastr.error(error);
             });
@@ -34,17 +34,17 @@ export class AddOrEditCourseContainer extends React.Component {
 
 
     handleSave(values) {
-        const course = {
+        const quote = {
             id: values.id,
             title: values.title,
             date: values.date,
             status: values.status
         };
 
-        this.props.action.saveCourseAction(course)
+        this.props.action.saveQuoteAction(quote)
             .then(() => {
                 toastr.success('Course saved');
-                this.props.history.push('/courses');
+                this.props.history.push('/quotes');
             }).catch(error => {
                 toastr.error(error);
             });
@@ -54,7 +54,7 @@ export class AddOrEditCourseContainer extends React.Component {
 
     handleCancel(event) {
         event.preventDefault();
-        this.props.history.replace('/courses');
+        this.props.history.replace('/quotes');
     }
 
 
@@ -65,7 +65,7 @@ export class AddOrEditCourseContainer extends React.Component {
 
         return (
             <div className="container">
-                <CourseForm
+                <QuoteForm
                     heading={heading}
                     authors={this.props.authors}
                     handleSave={this.handleSave}
@@ -80,11 +80,11 @@ export class AddOrEditCourseContainer extends React.Component {
 
 
 const mapStateToProps = (state, ownProps) => {
-    const courseId = ownProps.match.params.id; //from the path '/course/:id'
+    const quoteId = ownProps.match.params.id; //from the path '/course/:id'
 
-    if (courseId && state.selectedCourseReducer.course && courseId === state.selectedCourseReducer.course.id) {
+    if (quoteId && state.selectedQuoteReducer.quote && quoteId === state.selectedQuoteReducer.quote.id) {
         return {
-            initialValues: state.selectedCourseReducer.course,
+            initialValues: state.selectedQuoteReducer.quote,
             authors: authorsFormattedForDropdown(state.authorReducer.authors)
         };
     } else {
@@ -97,12 +97,12 @@ const mapStateToProps = (state, ownProps) => {
 
 
 const mapDispatchToProps = dispatch => ({
-    action: bindActionCreators({ ...authorAction, ...courseAction }, dispatch)
+    action: bindActionCreators({ ...authorAction, ...quoteAction }, dispatch)
 });
 
 
 
-AddOrEditCourseContainer.propTypes = {
+AddOrEditQuoteContainer.propTypes = {
     action: PropTypes.object.isRequired,
     history: PropTypes.object,
     authors: PropTypes.array,
@@ -112,4 +112,4 @@ AddOrEditCourseContainer.propTypes = {
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddOrEditCourseContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(AddOrEditQuoteContainer);

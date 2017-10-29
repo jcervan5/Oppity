@@ -29,7 +29,7 @@ const titleFormatter = (cell, row) => {
 
 
 
-class CourseList extends React.Component {
+class QuoteList extends React.Component {
 
     constructor(props) {
         super(props);
@@ -54,7 +54,7 @@ class CourseList extends React.Component {
 
 
         return (
-            <BootstrapTable data={this.props.courses}  selectRow={this.selectRowProp}  options={this.options} bordered={false} striped hover condensed>
+            <BootstrapTable data={this.props.quotes}  selectRow={this.selectRowProp}  options={this.options} bordered={false} striped hover condensed>
                 <TableHeaderColumn dataField="id" isKey hidden>Id</TableHeaderColumn>
 
                 <TableHeaderColumn
@@ -94,11 +94,11 @@ class CourseList extends React.Component {
 
 
 
-CourseList.propTypes = {
-    courses: PropTypes.array.isRequired,
+QuoteList.propTypes = {
+    quotes: PropTypes.array.isRequired,
     handleRowSelect: PropTypes.func.isRequired
 };
 
 
 
-export default CourseList;
+export default QuoteList;
