@@ -21,7 +21,7 @@ export const QuoteForm = ({ handleSubmit, pristine, reset, submitting, heading, 
                 type="text"
                 name="date"
                 label="Date"
-                placeholder="Date of Event"
+                placeholder="00/00/00"
                 component={FieldInput}
             />
 
@@ -55,14 +55,13 @@ const validate = values => {
         errors.title = 'Required';
     }
 
-    if (!values.category) {
+    if (!values.date) {
         errors.date = 'Required';
     }
 
-    if (!values.length) {
+    if (!values.status) {
         errors.status = 'Required';
     }
-
 
     return errors;
 };

@@ -1,12 +1,12 @@
-export const authorsFormattedForDropdown = authors => {
-    if (!authors) {
+export const contactsFormattedForDropdown = contacts => {
+    if (!contacts) {
         return;
     }
 
-    return authors.map(author => {
+    return contacts.map(contact => {
         return {
-            value: author.id,
-            text: `${author.firstName} ${author.lastName}`
+            value: contact.id,
+            text: `${contact.firstName} ${contact.lastName}`
         };
     });
 };

@@ -21,6 +21,7 @@ const quotes = [
         title: "Galvanize",
         date: "7/22/17",
         status: "Done"
+
     },
     {
         id: "company2",
@@ -32,7 +33,7 @@ const quotes = [
         id: "building",
         title: "Otterbox",
         date: "11/20/18",
-        status: "Pending"
+        status: "Pending",
     }
 ];
 
@@ -69,11 +70,11 @@ class QuoteApi {
                     quotes.splice(existingQuoteIndex, 1, quote);
                 } else {
                     //Just simulating creation here.
-                    //The server would generate ids and watchHref's for new courses in a real app.
+                    //The server would generate ids and watchHref's for new quotes in a real app.
                     //Cloning so copy returned is passed by value rather than by reference.
                     quote.id = generateId(quote);
-                    quote.watchHref = `http://www.pluralsight.com/courses/${quote.id}`;
-                    quote.push(quote);
+                    quote.watchHref = `http://www.pluralsight.com/quotes/${quote.id}`;
+                    quotes.push(quote);
                 }
 
                 resolve(quote);

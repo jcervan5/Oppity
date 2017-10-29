@@ -22,7 +22,7 @@ export class QuoteListContainer extends React.Component {
 
 
     componentDidMount() {
-        this.props.action.getQuoteAction()
+        this.props.action.getQuotesAction()
             .catch(error => {
                 toastr.error(error);
             });

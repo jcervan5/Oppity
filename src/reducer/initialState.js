@@ -1,6 +1,6 @@
 export default {
-    authorReducer: {
-        authors: []
+    contactReducer: {
+        contacts: []
     },
 
     quotesReducer: {

@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import toastr from 'toastr';
 import * as quoteAction from '../../action/QuoteAction';
-import * as authorAction from '../../action/AuthorAction';
+import * as contactAction from '../../action/ContactAction';
 import QuoteForm from './QuoteForm'; // eslint-disable-line import/no-named-as-default
-import { authorsFormattedForDropdown } from '../../selectors/selectors'; // eslint-disable-line import/no-named-as-default
+import { contactsFormattedForDropdown } from '../../selectors/selectors'; // eslint-disable-line import/no-named-as-default
 
 
 export class AddOrEditQuoteContainer extends React.Component {
@@ -25,7 +25,7 @@ export class AddOrEditQuoteContainer extends React.Component {
                 toastr.error(error);
             });
 
-        this.props.action.getAuthorsAction()
+        this.props.action.getContactsAction()
             .catch(error => {
                 toastr.error(error);
             });
@@ -43,7 +43,7 @@ export class AddOrEditQuoteContainer extends React.Component {
 
         this.props.action.saveQuoteAction(quote)
             .then(() => {
-                toastr.success('Course saved');
+                toastr.success('Quote saved');
                 this.props.history.push('/quotes');
             }).catch(error => {
                 toastr.error(error);
@@ -67,7 +67,7 @@ export class AddOrEditQuoteContainer extends React.Component {
             <div className="container">
                 <QuoteForm
                     heading={heading}
-                    authors={this.props.authors}
+                    contacts={this.props.contacts}
                     handleSave={this.handleSave}
                     handleCancel={this.handleCancel}
                     initialValues={this.props.initialValues}
@@ -80,16 +80,16 @@ export class AddOrEditQuoteContainer extends React.Component {
 
 
 const mapStateToProps = (state, ownProps) => {
-    const quoteId = ownProps.match.params.id; //from the path '/course/:id'
+    const quoteId = ownProps.match.params.id; //from the path '/quote/:id'
 
     if (quoteId && state.selectedQuoteReducer.quote && quoteId === state.selectedQuoteReducer.quote.id) {
         return {
             initialValues: state.selectedQuoteReducer.quote,
-            authors: authorsFormattedForDropdown(state.authorReducer.authors)
+            contacts: contactsFormattedForDropdown(state.contactReducer.contacts)
         };
     } else {
         return {
-            authors: authorsFormattedForDropdown(state.authorReducer.authors)
+            contacts: contactsFormattedForDropdown(state.contactReducer.contacts)
         };
     }
 };
@@ -97,7 +97,7 @@ const mapStateToProps = (state, ownProps) => {
 
 
 const mapDispatchToProps = dispatch => ({
-    action: bindActionCreators({ ...authorAction, ...quoteAction }, dispatch)
+    action: bindActionCreators({ ...contactAction, ...quoteAction }, dispatch)
 });
 
 
@@ -105,7 +105,7 @@ const mapDispatchToProps = dispatch => ({
 AddOrEditQuoteContainer.propTypes = {
     action: PropTypes.object.isRequired,
     history: PropTypes.object,
-    authors: PropTypes.array,
+    contacts: PropTypes.array,
     initialValues: PropTypes.object,
     match: PropTypes.object.isRequired
 };

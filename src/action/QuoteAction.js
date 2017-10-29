@@ -44,8 +44,8 @@ export function saveQuoteAction(quoteBeingAddedOrEdited) {
 
         dispatch(ApiCallBeginAction());
 
-        //if authorId exists, it means that the course is being edited, therefore update it.
-        //if authorId doesn't exist, it must therefore be new course that is being added, therefore add it
+        //if nameId exists, it means that the quote is being edited, therefore update it.
+        //if nameId doesn't exist, it must therefore be new quote that is being added, therefore add it
         return QuoteApi.saveQuote(quoteBeingAddedOrEdited)
             .then(() => {
                 if (quoteBeingAddedOrEdited.id) {
@@ -102,7 +102,7 @@ export function deleteQuoteAction(quoteId) {
             .then(() => {
                 dispatch(deleteQuoteResponse());
             }).then(() => {
-                dispatch(getQuoteAction());
+                dispatch(getQuotesAction());
             }).catch(error => {
                 throw error;
             });
