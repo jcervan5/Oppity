@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import Spinner from '../common/Spinner';
+import AuthBtn from './auth';
+
 
 
 export const HeaderNavContainer = ({apiCallsInProgress}) => {
@@ -14,13 +15,10 @@ export const HeaderNavContainer = ({apiCallsInProgress}) => {
 
                 <div className="collapse navbar-collapse" id="mainNav">
                     <div className="navbar-nav">
-                        <NavLink className="nav-item nav-link" id="ys" exact activeClassName="active" to="/">Yaffa's Savory</NavLink>
-                        <NavLink className="nav-item nav-link" activeClassName="active" to="/quotes" >Quotes</NavLink>
-                        <NavLink className="nav-item nav-link" activeClassName="active" to="/events">Events</NavLink>
-
-                        <span className="ml-5">
-                            {apiCallsInProgress > 0 && <Spinner className="nav-item nav-link" interval={100} dots={20} />}
-                        </span>
+                        <NavLink className="nav-item nav-link" id="ys" exact activeClassName="active" to="/"><h3>Yaffa's Savory</h3></NavLink>
+                        <NavLink className="nav-item nav-link" activeClassName="active" to="/quotes" ><h5>Quotes</h5></NavLink>
+                        <NavLink className="nav-item nav-link" activeClassName="active" to="/event"><h5>Events</h5></NavLink>
+                        <AuthBtn />
                     </div>
                 </div>
             </div>

@@ -3,10 +3,8 @@ import React from 'react';
 
 const Events = () => {
   return (
-    <div className="container">
-      <h1>Events</h1>
-      <p>Events this month</p>
-    </div>
+    <h1>hello</h1>
+
   );
 };
 

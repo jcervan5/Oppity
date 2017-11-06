@@ -13,7 +13,7 @@ class Spinner extends React.Component {
 
   componentDidMount() {
     this.interval = setInterval(() => {
-      this.setState({  // eslint-disable-line react/no-did-mount-set-state
+      this.setState({  
         frame: this.state.frame + 1
       });
     }, this.props.interval);

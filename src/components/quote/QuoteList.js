@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
+import { Link } from 'react-router-dom'
 
 
 
@@ -24,7 +25,7 @@ const getCaret = direction => {
 
 
 const titleFormatter = (cell, row) => {
-  return `<a href=${row.watchHref} target="_blank">${cell}</a>`;
+  return <Link to={'/edit/' + row.id}>{cell}</Link>
 };
 
 
@@ -51,7 +52,7 @@ class QuoteList extends React.Component {
 
 
     render() {
-
+      console.log(this.props.quotes);
 
         return (
             <BootstrapTable data={this.props.quotes}  selectRow={this.selectRowProp}  options={this.options} bordered={false} striped hover condensed>

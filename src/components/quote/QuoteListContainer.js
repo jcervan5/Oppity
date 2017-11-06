@@ -91,7 +91,7 @@ export class QuoteListContainer extends React.Component {
                         <div className="btn-group" role="group">
                             <button
                                 type="button"
-                                className="btn btn-primary"
+                                className="btn btn-outline-primary"
                                 onClick={this.handleAddQuote}
                             >
                                 <i className="fa fa-plus" aria-hidden="true"/> New
@@ -99,7 +99,7 @@ export class QuoteListContainer extends React.Component {
 
                             <button
                                 type="button"
-                                className="btn btn-warning ml-2"
+                                className="btn btn-outline-warning ml-2"
                                 onClick={this.handleEditQuote}
                             >
                                 <i className="fa fa-pencil" aria-hidden="true"/> Edit
@@ -107,7 +107,7 @@ export class QuoteListContainer extends React.Component {
 
                             <button
                                 type="button"
-                                className="btn btn-danger ml-2"
+                                className="btn btn-outline-success ml-2"
                                 onClick={this.handleDelete}
                             >
                                 <i className="fa fa-trash-o" aria-hidden="true" onClick={this.handleDelete}/> Delete

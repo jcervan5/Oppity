@@ -4,8 +4,8 @@ import { bindActionCreators } from 'redux';
 import toastr from 'toastr';
 import * as quoteAction from '../../action/QuoteAction';
 import * as contactAction from '../../action/ContactAction';
-import QuoteForm from './QuoteForm'; // eslint-disable-line import/no-named-as-default
-import { contactsFormattedForDropdown } from '../../selectors/selectors'; // eslint-disable-line import/no-named-as-default
+import QuoteForm from './QuoteForm';
+import { contactsFormattedForDropdown } from '../../selectors/selectors';
 
 
 export class AddOrEditQuoteContainer extends React.Component {
@@ -80,7 +80,7 @@ export class AddOrEditQuoteContainer extends React.Component {
 
 
 const mapStateToProps = (state, ownProps) => {
-    const quoteId = ownProps.match.params.id; //from the path '/quote/:id'
+    const quoteId = ownProps.match.params.id; 
 
     if (quoteId && state.selectedQuoteReducer.quote && quoteId === state.selectedQuoteReducer.quote.id) {
         return {

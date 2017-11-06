@@ -4,14 +4,13 @@ import open from 'open';
 import compression from 'compression';
 
 
-/* eslint-disable no-console */
 const port = 3000;
 const app = express();
 
-//gzip
+
 app.use(compression());
 
-//Express to serve static files
+
 app.use(express.static('dist'));
 
 

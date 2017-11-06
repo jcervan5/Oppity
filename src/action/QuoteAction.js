@@ -44,8 +44,6 @@ export function saveQuoteAction(quoteBeingAddedOrEdited) {
 
         dispatch(ApiCallBeginAction());
 
-        //if nameId exists, it means that the quote is being edited, therefore update it.
-        //if nameId doesn't exist, it must therefore be new quote that is being added, therefore add it
         return QuoteApi.saveQuote(quoteBeingAddedOrEdited)
             .then(() => {
                 if (quoteBeingAddedOrEdited.id) {
