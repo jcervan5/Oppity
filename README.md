@@ -9,5 +9,5 @@ An automated system to house quote forms for easy access and functionality for t
    
 ## Built With
 * [Bootstrap](https://v4-alpha.getbootstrap.com/) - The web framework used
-* [React Front-End Framework](https://reactjs.org/) - Front-End Framework
+* [React.js](https://reactjs.org/) - Front-End Framework
 * [HTML, CSS, JS, JQUERY] - List of programs I used 
